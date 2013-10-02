@@ -10,12 +10,12 @@
 
 
 ##Technologies
-*HTML5 File Api
-*HTML5 Local Storage
-*Snigle Page Application
-*MVC pattern
-*JSON
-*HTML5 Canvas
+* HTML5 File Api
+* HTML5 Local Storage
+* Snigle Page Application
+* MVC pattern
+* JSON
+* HTML5 Canvas
 
 ##Languages
 *JavaScript
