@@ -35,11 +35,11 @@
  * Solarize
  * Sharpen
  * Glow
- *Desaturate
+ * Desaturate
 
-*Colors
- *Change color or RGB
- *Invert Color
+* Colors
+ * Change color or RGB
+ * Invert Color
 
 * Image 
  * Filp Vertically and Horizontally
