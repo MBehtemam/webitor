@@ -1,0 +1,30 @@
+body {
+    cursor:url('../images/move-tool.png');
+}
+.imageArea {
+	margin-right: 2px;
+    border:1px dashed gray;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius: 5px;
+}
+.toolbar {
+    background:#ccc;
+    min-height: 300px;
+    width:40px;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius: 5px;
+}
+.toolbar header {
+    font-size:9px;
+    text-align: left;
+    margin-left: -9px;
+    border-bottom:1px solid black;
+}
+canvas {
+}
+.properties {
+	background:#ccc;
+    min-height: 140px;
+}

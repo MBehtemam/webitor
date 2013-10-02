@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <met charset="utf-8">
+        <title>Webitor :: Online Image Editor :: Shiraz University -> MBehtemam</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/slider.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/jquery.Jcrop.min.css">
+         <link rel="stylesheet" href="css/colorpicker.css">
+</head>
+
+<body>
+	<script type="text/x-handlebars" data-template-name="application">
+		    <div class="container well">
+        <div class="row">
+            <div class="navbar navbar-inverse" rol="navigation">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">webitor</a>
+                </div>
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">File<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                        	<li>{{#linkTo 'open'}}Open{{/linkTo}}</li>
+                        	<li>{{#linkTo 'openurl'}}Open from Url{{/linkTo}}</li>
+                        	<li>{{#linkTo 'openlsa'}}Open From Local Storage{{/linkTo}}</li>
+                        	<li>{{#linkTo 'savelsa'}}Save to Local Storage{{/linkTo}}</li>
+                        	<li><a href="#">Save As Image</a></li>
+                        </ul>
+                        </li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span>Colors</a>
+                        <ul class="dropdown-menu">
+                            <li>{{#linkTo 'invertColor'}}Invert Color{{/linkTo}}</li>
+                            <li>{{#linkTo 'lighten'}}Lighten Color{{/linkTo}}</li>
+                            <li>{{#linkTo 'colorAdjust'}}Color Adjust{{/linkTo}}</li>
+                        </ul>
+                        </li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Filter<span class="caret"></span>
+                            <ul class="dropdown-menu">
+                                <li>{{#linkTo 'blur'}}Blur{{/linkTo}}</li>
+                                <li>{{#linkTo 'blurFast'}}Blur Fast{{/linkTo}}</li>
+                                <li>{{#linkTo 'noise'}}Noise{{/linkTo}}</li>
+                                <li>{{#linkTo 'mosaic'}}Mosaic{{/linkTo}}</li>
+                                <li>{{#linkTo 'posterize'}}Posterize{{/linkTo}}</li>
+                                <li>{{#linkTo 'solarize'}}Solarize{{/linkTo}}</li>
+                                <li>{{#linkTo 'sharpen'}}Sharpen{{/linkTo}}</li>
+                                <li>{{#linkTo 'glow'}}Glow{{/linkTo}}</li>
+                                <li>{{#linkTo 'desaturate'}}Desaturate{{/linkTo}}</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Image
+                        <span class="caret"></span></a><ul class="dropdown-menu">
+                            <li>{{#linkTo 'crop'}}Crop{{/linkTo}}</li>
+                        </ul></li>
+
+                        <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">About<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>{{#linkTo 'about'}}About{{/linkTo}}</li>
+                        </ul>
+                        </li>
+                        </ul>
+                        <p class="navbar-text">Shiraz University :: &copy; 2013 Mohammad Bagher Ehtemam</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1 toolbar">
+            	<header>Toolbar</header>
+                <div>
+                    {{#linkTo 'move'}}<img src="images/move-tool.png"/>{{/linkTo}}
+                </div>
+                <div>
+                   {{#linkTo 'type'}} <img src="images/type-tool.png" />{{/linkTo}}
+                </div>
+                <div>
+                   {{#linkTo 'crop'}} <img src="images/crop-tool.png" />{{/linkTo}}
+                </div>
+                <div>
+                   {{#linkTo 'paint'}} <img src="images/paint-bucket-tool.png" />{{/linkTo}}
+                </div>
+                <div>
+                  {{#linkTo 'zoom'}}  <img src="images/zoom-tool.png">{{/linkTo}}
+                </div>
+                <div>
+                    {{#linkTo 'brightness'}}<img src="images/stock-tool-brightness-contrast-22.png" />{{/linkTo}}
+                </div>
+                <div>
+                    {{#linkTo 'flip'}}<img src="images/stock-tool-flip-22.png" />{{/linkTo}}
+                </div>
+                <div>
+                    {{#linkTo 'scale'}}<img src="images/stock-tool-scale-22.png" />{{/linkTo}}
+                </div>
+            </div>
+            <div class="col-md-11 imageArea">
+                {{!--<canvas width="900" height="400"></canvas>--}}
+                <img id="canvas"/>
+            </div>
+        </div>
+        <div class="row properties">
+        <div class="label label-warning">Tools Properties</div><hr/>
+            {{outlet}}
+        </div>
+    </div>
+	</script>
+	<script type="text/x-handlebars" data-template-name="move">
+		This is Move Tool
+	</script>
+	<script type="text/x-handlebars" data-template-name="type">
+		This is a Type Tool
+	</script>
+	<script type="text/x-handlebars" data-template-name="crop">
+		<button class="btn btn-success" {{action crop target=view}} id="crop">Crop</button>
+	</script>
+	<script type="text/x-handlebars" data-template-name="paint">
+		<input type="text" id="color">
+        <button class="btn btn-success" {{action paint target=view}}>Paint</button>
+	</script>
+	<script type="text/x-handlebars" data-template-name="zoom">
+		This is zoom tool
+	</script>
+	<script type="text/x-handlebars" data-template-name="brightness">
+		Brightness  : <input id="brightness"/> &nbsp; Contrast  : <input id="contrast"/> &nbsp;
+        <br/>
+        <button class="btn btn-success"{{action bright target=view}}>Bright</button>
+	</script>
+	<script type="text/x-handlebars" data-template-name="flip">
+		<button class="btn btn-primary" {{action vertical target=view}}>Flip Verticaly</button>
+        <button class="btn btn-danger" {{action horizontal target=view}}>Flip Horizontaly<button>
+	</script>
+	<script type="text/x-handlebars" data-template-name="scale">
+		This is scale
+	</script>
+	<script type="text/x-handlebars" data-template-name="open">
+		<span class="label label-info">Open File From you Computer</span>
+		<input type="file" id="openFile">
+	</script>
+	<script type="text/x-handlebars" data-template-name="openurl">
+		<div>
+			<span class="label label-info">Open File From Url(internet)</span>
+		</div>
+		<div class="col-md-6">
+			<label for="url">Url : </label>
+		{{input type="text" name="url" value=url id="url" class="form-control input-sm" placeholder="http://www.mbehtemam.blog.ir/image.jpg"}}<br/>
+		<button type="button" class="btn btn-success" {{action open target=view}}>Open</button>&nbsp;<input type="button" class="btn btn-danger" value="cancel">
+		</div>
+	</script>
+	<script type="text/x-handlebars" data-template-name="openlsa">
+		<span class="label label-info"></span><br/>
+		<table class="table table-bordered table-hover table-condensed table-striped">
+			<thead>
+				<tr><th>R</th><th>Name</th><th></th></tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td><td>Image 1</td><td><input type="button" class="btn btn-default  btn-xs" value="open">&nbsp;<input type="button" class="btn btn-danger btn-xs" value="delete"></td>
+				</tr>
+				<tr>
+					<td>2</td><td>Image 2</td><td><input type="button" class="btn btn-default  btn-xs" value="open">&nbsp;<input type="button" class="btn btn-danger btn-xs" value="delete"></td>
+				</tr>
+			</tbody>
+		</table>
+	</script>
+	<script type="text/x-handlebars" data-template-name="savelsa">
+		<span class="label label-info">Save to web browser Local Storage</span><br/>
+		<div class="col-md-8">
+			<label for="savelsa">Name of image</label>
+			<input type="text" class="form-control input-xs">
+			<input type="button" class="btn btn-success btn-xs" value="save">
+		</div>
+	</script>
+    <script type="text/x-handlebars" data-template-name="invertColor">
+        <button class="btn btn-info" {{action invert target=view}}>Invert</button>
+    </script>
+    <script type="text/x-handlebars" data-template-name="blur">
+        <button class="btn btn-info" {{action blur target=view}}>Blur</button>
+    </script>
+    <script type="text/x-handlebars" data-template-name="blurFast">
+    <div class="col-md-4">
+            Amount : <input id="amount"/><br/>
+        <button class="btn btn-success" {{action blurfast target=view}}>Blur Fast</button>
+    </div>
+    </script>
+    <script type="text/x-handlebars" data-template-name="lighten">
+    <div class="col-md-4">
+        Amount : <input id="amount"/><br/>
+        <button class="btn btn-success" {{action lighten target=view}}>Lighten</button>
+    </div>
+    </script>
+    <script type="text/x-handlebars" data-template-name="colorAdjust">
+        Red : <input id="red"/> &nbsp; Blue : <input id="blue"/> &nbsp; Green : <input id="green"/><br/>
+        <button class="btn btn-success"{{action colorAdjust target=view}}>Color Adjust</button>
+    </script>
+    <script type="text/x-handlebars" data-template-name="noise">
+        Amount : <input id="amount"/> &nbsp; Strength : <input id="strength"/> &nbsp;
+        <br/>
+        <button class="btn btn-success"{{action noise target=view}}>Noise</button>
+        <button class="btn btn-warning" {{action removeNoise target=view}}>Remove Noise</button>
+    </script>
+    <script type="text/x-handlebars" data-template-name="mosaic">
+         Block : <input id="block"/>
+         <button class="btn btn-warning" {{action mosaic target=view}}>Mosaic</button>
+    </script>
+    <script type="text/x-handlebars" data-template-name="posterize">
+        Level : <input id="level"/>
+         <button class="btn btn-warning" {{action level target=view}}>Level</button>
+    </script>
+    <script type="text/x-handlebars" data-template-name="solarize">
+        <button class="btn btn-success">Solarize</button>
+    </script>
+     <script type="text/x-handlebars" data-template-name="sharpen">
+        Level : <input id="sharpen"/>&nbsp;&nbsp;
+         <button class="btn btn-warning" {{action sharpen target=view}}>Sharpen</button>
+    </script>
+    <script type="text/x-handlebars" data-template-name="glow">
+         Amount : <input id="amount"/> &nbsp; Radius : <input id="radius"/> &nbsp;
+         <button class="btn btn-success" {{action glow target=view}}>Glow</button>
+    </script>
+    <script type="text/x-handlebars" data-template-name="desaturate">
+        <button class="btn btn-success" {{action desaturate target=view}}>Desaturate</button>
+    </script>
+        <script type="text/x-handlebars" data-template-name="about">
+        <div class="col-md-2"> <img src="img/mbehtemam.jpeg" class="img-rounded "/></div>
+       <div class="col-md-9">
+        
+        <table class="table table-bordered table-condensed table-hover table-striped">
+            <tbody>
+                <tr><td> <span class="label label-success">Developer</span></td><td><strong>Mohammad Bagher Ehtemam (MBehtemam)</strong></td></tr>
+                <tr><td>  <span class="label label-warning">Tools</span></td><td>jQuery,Emberjs,pixastic,caman,bootstrap,handlebars,colorpicker,jCrop</td></tr>
+                <tr>
+                    <td></td><td>Shiraz University &copy;2013</td>
+                </tr>
+            </tbody>
+        </table>
+       </div>
+    </script>
+
+    <!-- Script section -->
+    <script src="lib/jquery.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <script src="lib/bootstrap-slider.js"></script>
+    <script src="lib/handlebars.js"></script>
+    <script src="lib/ember.js"></script>
+    <script src="lib/pixastic.custom.js"></script>
+    <script src="lib/jquery.color.js"></script>
+    <script src="lib/caman.full.min.js"></script>
+    <script src="lib/jquery.Jcrop.min.js"></script>
+    <script src="lib/bootstrap-colorpicker.js"></script>
+    <script src="app.js"></script>
+    <!-- End of script section -->
+    <script src="views/ApplicationView.js"></script>
+    <script src="views/InvertColorView.js"></script>
+    <script src="views/FlipView.js"></script>
+     <script src="views/BlurView.js"></script>
+    <script src="views/BlurFastView.js"></script>
+    <script src="views/LightenView.js"></script>
+    <script src="views/ColorAdjustView.js"></script>
+    <script src="views/NoiseView.js"></script>
+    <script src="views/MosaicView.js"></script>
+    <script src="views/BrightnessView.js"></script>
+    <script src="views/PosterizeView.js"></script>
+    <script src="views/SolarizeView.js"></script>
+    <script src="views/SharpenView.js"></script>
+    <script src="views/GlowView.js"></script>
+    <script src="views/DesaturateView.js"></script>
+    <script src="views/CropView.js"></script>
+    <script src="views/PaintView.js"></script>
+    <script src="views/OpenView.js"></script>
+    <script src="views/AboutView.js"></script>
+     <script src="views/OpenurlView.js"></script>
+</body>
+
+</html>
