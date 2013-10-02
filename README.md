@@ -38,7 +38,7 @@
  * Desaturate
 
 * Colors
- * Change color or RGB
+ * Change color of image
  * Invert Color
 
 * Image 
