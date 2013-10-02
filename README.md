@@ -1,12 +1,12 @@
-#HTML5 Image Ediotr
+#HTML5 Image Editor
 
 ##Tools to build webitor
 
-*jQuery
-*Twitter Bootstrap
-*Emberjs
-*jCrop plugin
-*pixastic
+* jQuery
+* Twitter Bootstrap
+* Emberjs
+* jCrop plugin
+* pixastic
 
 
 ##Technologies
@@ -18,28 +18,28 @@
 * HTML5 Canvas
 
 ##Languages
-*JavaScript
-*HTML
-*CSS
+* JavaScript
+* HTML
+* CSS
 
 ##Features
 
-*Open item form local or internet and save into local with HTML5 File Api
-*Crop image base on selection
-*Invert Color Of Image
-*Filters
- *Blur
- *Blur Fast
- *Noise
- *Posterize
- *Solarize
- *Sharpen
- *Glow
+* Open item form local or internet and save into local with HTML5 File Api
+* Crop image base on selection
+* Invert Color Of Image
+* Filters
+ * Blur
+ * Blur Fast
+ * Noise
+ * Posterize
+ * Solarize
+ * Sharpen
+ * Glow
  *Desaturate
 
 *Colors
  *Change color or RGB
  *Invert Color
 
-*Image 
- *Filp Vertically and Horizontally
+* Image 
+ * Filp Vertically and Horizontally
