@@ -23,10 +23,6 @@ Webitor.CropView = Ember.View.extend({
     },
     actions: {
         crop: function() {
-        	console.log(this.get('left'));
-        	console.log(this.get('top'));
-        	console.log(this.get('width'));
-        	console.log(this.get('height'));
         	// jcrop_api.destroy();
             var img = document.getElementById('canvas');
             Pixastic.process(img, "crop", {
